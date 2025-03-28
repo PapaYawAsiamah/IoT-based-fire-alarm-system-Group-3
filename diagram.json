@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "author": "Microprocessors Group 3",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-gas-sensor", "id": "gas1", "top": 50.7, "left": -185, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -32.4,
+      "left": -111.4,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 117.6,
+      "left": -113.4,
+      "attrs": { "volume": "0.1" }
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": 35.2,
+      "left": 188,
+      "attrs": { "pins": "i2c" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "gas1:AOUT", "esp:34", "green", [ "h0" ] ],
+    [ "gas1:VCC", "esp:5V", "red", [ "h9.6", "v104.7" ] ],
+    [ "gas1:GND", "esp:CMD", "black", [ "h19.2", "v104.8" ] ],
+    [ "gas1:DOUT", "esp:D2", "green", [ "h28.8", "v95.7" ] ],
+    [ "led1:C", "esp:GND.2", "green", [ "v19.2", "h58", "v-67.2", "h153.6", "v67.2" ] ],
+    [ "led1:A", "esp:32", "green", [ "v0", "h76.8", "v76.8" ] ],
+    [ "lcd1:GND", "esp:GND.2", "black", [ "h-28.8", "v-38.4" ] ],
+    [ "lcd1:VCC", "esp:5V", "red", [ "h-28.8", "v144.1", "h-182.4", "v-19.2" ] ],
+    [ "lcd1:SCL", "esp:22", "green", [ "h-67.2", "v-47.7" ] ],
+    [ "esp:21", "lcd1:SDA", "green", [ "h72.04", "v9.6" ] ],
+    [ "bz1:2", "esp:16", "green", [ "v38.4", "h210.8", "v-105.6" ] ],
+    [ "bz1:1", "esp:GND.2", "green", [ "v57.6", "h240", "v-230.4" ] ]
+  ],
+  "dependencies": {}
+}
